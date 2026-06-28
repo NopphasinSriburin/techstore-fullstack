@@ -27,6 +27,7 @@
 #Register
 <img width="1912" height="873" alt="image" src="https://github.com/user-attachments/assets/edaae43b-d163-42d9-9f29-21c8426b5f6a" />
 #Cart
+
 <img width="607" height="317" alt="image" src="https://github.com/user-attachments/assets/336d510f-4606-4e0c-af04-ab7a2f8c8be5" />
 #MainPage
 <img width="1888" height="945" alt="image" src="https://github.com/user-attachments/assets/f105f07a-9fd8-4454-b255-dae79e985c28" />
