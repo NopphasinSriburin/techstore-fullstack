@@ -1,0 +1,61 @@
+# ============================================================
+#  docker-compose.yml — รัน database + backend + frontend
+#  วางไฟล์นี้ที่: root ของโปรเจกต์
+#  รันด้วย:  docker compose up --build
+# ============================================================
+
+services:
+  # ---------- PostgreSQL ----------
+  database:
+    image: postgres:15
+    container_name: gadget_shop_db
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: it_gadget_shop
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # healthcheck — ให้ backend รอจนกว่า db จะพร้อมจริง
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d it_gadget_shop"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ---------- Spring Boot Backend ----------
+  backend:
+    build:
+      context: ./backend-api          # โฟลเดอร์ backend (Spring Boot)
+      dockerfile: Dockerfile
+    container_name: gadget_shop_backend
+    ports:
+      - "8081:8081"
+    environment:
+      # ★ ต่อ database ผ่าน "ชื่อ service" ไม่ใช่ localhost
+      #   และพอร์ตภายใน network คือ 5432 (ไม่ใช่ 5433)
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/it_gadget_shop
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password123
+    volumes:
+      # เก็บรูปอัปโหลดไว้นอก container (ไม่หายเวลา restart)
+      - uploads:/app/uploads
+    depends_on:
+      database:
+        condition: service_healthy    # รอ db พร้อมก่อน
+
+  # ---------- Vue Frontend (nginx) ----------
+  frontend:
+    build:
+      context: ./ECMShop              # โฟลเดอร์ frontend (Vue)
+      dockerfile: Dockerfile
+    container_name: gadget_shop_frontend
+    ports:
+      - "5173:80"                     # เปิดเว็บที่ http://localhost:5173
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  uploads:
