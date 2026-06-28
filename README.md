@@ -23,10 +23,16 @@
 ## ภาพหน้าจอ
 
 > _ใส่ภาพหน้าจอหรือ GIF 3–4 รูปตรงนี้ แนะนำ:_
-> - _หน้าร้านค้า (product grid)_
-> - _ตะกร้าสินค้า + checkout_
-> - _หน้าชำระเงิน (QR + อัปสลิป)_
-> - _หน้าจัดการออเดอร์ของแอดมิน_
+#Login
+<img width="1901" height="867" alt="image" src="https://github.com/user-attachments/assets/de20e3e2-9d14-4ce4-a794-15b24b8fc2b9" />
+#Register
+<img width="1912" height="873" alt="image" src="https://github.com/user-attachments/assets/edaae43b-d163-42d9-9f29-21c8426b5f6a" />
+#Cart
+<img width="607" height="317" alt="image" src="https://github.com/user-attachments/assets/336d510f-4606-4e0c-af04-ab7a2f8c8be5" />
+#MainPage
+<img width="1888" height="945" alt="image" src="https://github.com/user-attachments/assets/f105f07a-9fd8-4454-b255-dae79e985c28" />
+#admin controll
+<img width="1877" height="943" alt="image" src="https://github.com/user-attachments/assets/f17c8e64-3603-4e34-abb1-a09420e0db6c" />
 
 | หน้าร้านค้า | หน้าแอดมิน |
 |:---:|:---:|
@@ -78,11 +84,11 @@
 
 ```
 ┌─────────────────────────┐         ┌──────────────────────────────┐
-│     Vue 3 Frontend      │  HTTP   │     Spring Boot Backend       │
-│   (เสิร์ฟด้วย nginx)     │ ──────► │         (พอร์ต 8081)          │
+│     Vue 3 Frontend      │  HTTP   │     Spring Boot Backend      │
+│   (เสิร์ฟด้วย nginx)       │ ──────► │         (พอร์ต 8081)          │
 │                         │  JWT    │                              │
-│  • App.vue (สลับหน้า    │         │  Controllers                 │
-│    ด้วย v-if)           │ ◄────── │   ├─ AuthController          │
+│  • App.vue (สลับหน้า      │        │  Controllers                 │
+│    ด้วย v-if)            │ ◄────── │   ├─ AuthController          │
 │  • api/http.js          │  JSON   │   ├─ ProductController       │
 │    (axios + interceptor)│         │   ├─ CategoryController      │
 │  • components/          │         │   ├─ OrderController         │
