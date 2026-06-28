@@ -33,12 +33,6 @@
 #admin controll
 <img width="1877" height="943" alt="image" src="https://github.com/user-attachments/assets/f17c8e64-3603-4e34-abb1-a09420e0db6c" />
 
-| หน้าร้านค้า | หน้าแอดมิน |
-|:---:|:---:|
-| _ภาพ_ | _ภาพ_ |
-
----
-
 ## ฟีเจอร์
 
 ### ฝั่งลูกค้า
