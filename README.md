@@ -22,7 +22,6 @@
 
 ## ภาพหน้าจอ
 
-> _ใส่ภาพหน้าจอหรือ GIF 3–4 รูปตรงนี้ แนะนำ:_
 #Login
 <img width="1901" height="867" alt="image" src="https://github.com/user-attachments/assets/de20e3e2-9d14-4ce4-a794-15b24b8fc2b9" />
 #Register
