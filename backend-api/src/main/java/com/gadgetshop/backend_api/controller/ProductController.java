@@ -33,10 +33,10 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
-    // ดึงสินค้าทั้งหมด
+    // ดึงสินค้าทั้งหมด (เฉพาะที่ยังไม่ถูกลบ)
     @GetMapping
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return productRepository.findByActiveTrue();
     }
 
     // 🆕 ดึงสินค้าตัวเดียว (สำหรับหน้ารายละเอียด)
@@ -83,13 +83,16 @@ public class ProductController {
         }
     }
 
-    // ลบสินค้า
+    // ลบสินค้า — ใช้ soft delete (ซ่อนแทนลบจริง)
+    // เพื่อไม่ให้ประวัติออเดอร์ที่อ้างถึงสินค้านี้พัง (foreign key)
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
         try {
             Product product = productRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("❌ ไม่พบสินค้าไอดี: " + id));
-            productRepository.delete(product);
+            // ไม่ลบจริง แค่เซ็ต active = false (ซ่อนจากหน้าร้าน/ตาราง)
+            product.setActive(false);
+            productRepository.save(product);
             return ResponseEntity.ok().body("🗑️ ลบสินค้าเรียบร้อยแล้ว");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("ไม่สามารถลบสินค้าได้: " + e.getMessage());

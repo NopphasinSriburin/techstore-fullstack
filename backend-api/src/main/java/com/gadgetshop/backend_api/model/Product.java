@@ -29,6 +29,11 @@ public class Product {
     @Column(name = "stock_quantity", nullable = false)
     private Integer stockQuantity;
 
+    // 🆕 Soft delete: true = แสดงปกติ, false = ถูก "ลบ" (ซ่อน แต่ข้อมูลยังอยู่)
+    // ใช้แทนการลบจริง เพื่อไม่ให้ประวัติออเดอร์ที่อ้างถึงสินค้านี้พัง
+    @Column(nullable = false)
+    private Boolean active = true;
+
     // 🖼️ รูปหลัก — โชว์ในการ์ด/ตาราง (เหมือนเดิม)
     @Column(name = "image_url")
     private String imageUrl;
